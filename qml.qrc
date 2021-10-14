@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Content/Blinds.qml</file>
+        <file>Content/Erase.qml</file>
+        <file>Content/FlyIn.qml</file>
+        <file>Content/Ladder.qml</file>
+        <file>Content/Splitting.qml</file>
+        <file>Content/Checkerboard.qml</file>
+        <file>Content/Line.qml</file>
+        <file>Content/Dissolution.qml</file>
+        <file>Content/Box.qml</file>
+        <file>Content/Diamond.qml</file>
+        <file>Content/Spoke.qml</file>
+        <file>Content/Sector.qml</file>
+        <file>Content/CrossStars.qml</file>
+        <file>Content/Circular.qml</file>
+        <file>Content/Stretch.qml</file>
+        <file>Content/GradientScaling.qml</file>
+        <file>Content/GradientGyration.qml</file>
+        <file>Content/Rise.qml</file>
+        <file>Content/Compress.qml</file>
+        <file>Content/Bounce.qml</file>
+        <file>Content/Enlarge.qml</file>
+        <file>Content/Whirling.qml</file>
+        <file>Content/Float.qml</file>
+        <file>Content/LightSpeed.qml</file>
+        <file>Content/SpiralFlight.qml</file>
+        <file>Content/Throw.qml</file>
+        <file>Content/Windmill.qml</file>
+        <file>Content/Linear.qml</file>
+        <file>Content/Aircraft.qml</file>
+    </qresource>
+</RCC>
