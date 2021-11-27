@@ -30,5 +30,6 @@
         <file>Content/Windmill.qml</file>
         <file>Content/Linear.qml</file>
         <file>Content/Aircraft.qml</file>
+        <file>Content/function.js</file>
     </qresource>
 </RCC>
