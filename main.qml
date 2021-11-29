@@ -4,7 +4,7 @@ import QtQuick.Controls 2.5
 
 Window {
     width: 1200; height: 900
-    title: qsTr("Image processing demo")
+    title: qsTr("Image Processing Demo")
     visible: true
 
     // Module Bar
@@ -20,20 +20,15 @@ Window {
 
         model: ListModel {
             // 基础
-            ListElement { effectName: "百叶窗" }
-            ListElement { effectName: "擦除" }
-            ListElement { effectName: "飞入" }
-            ListElement { effectName: "阶梯状" }
+            ListElement { effectName: "百叶窗与棋盘" }
             ListElement { effectName: "劈裂" }
-            ListElement { effectName: "棋盘" }
-            ListElement { effectName: "线条" }
             ListElement { effectName: "溶解" }
-            ListElement { effectName: "盒状" }
-            ListElement { effectName: "菱形" }
-            ListElement { effectName: "轮辐" }
-            ListElement { effectName: "扇形" }
-            ListElement { effectName: "十字星" }
-            ListElement { effectName: "圆形" }
+            ListElement { effectName: "方盒与圆盒" }
+            ListElement { effectName: "菱形扩展" }
+            ListElement { effectName: "十字扩展" }
+            ListElement { effectName: "轮辐与扇形" }
+            ListElement { effectName: "对角线" }
+            ListElement { effectName: "随机线条" }
 
             // 炫酷
             ListElement { effectName: "伸展" }
@@ -120,19 +115,14 @@ Window {
         switch ( pageID )
         {
         case 1: stack.push("./Content/Blinds.qml"); break;
-        case 2: stack.push("./Content/Erase.qml"); break;
-        case 3: stack.push("./Content/FlyIn.qml"); break;
-        case 4: stack.push("./Content/Ladder.qml"); break;
-        case 5: stack.push("./Content/Splitting.qml"); break;
-        case 6: stack.push("./Content/Checkerboard.qml"); break;
-        case 7: stack.push("./Content/Line.qml"); break;
-        case 8: stack.push("./Content/Dissolution.qml"); break;
-        case 9: stack.push("./Content/Box.qml"); break;
-        case 10: stack.push("./Content/Diamond.qml"); break;
-        case 11: stack.push("./Content/Spoke.qml"); break;
-        case 12: stack.push("./Content/Sector.qml"); break;
-        case 13: stack.push("./Content/CrossStars.qml"); break;
-        case 14: stack.push("./Content/Circular.qml"); break;
+        case 2: stack.push("./Content/Splitting.qml"); break;
+        case 3: stack.push("./Content/Dissolution.qml"); break;
+        case 4: stack.push("./Content/Box.qml"); break;
+        case 5: stack.push("./Content/Diamond.qml"); break;
+        case 6: stack.push("./Content/CrossStars.qml"); break;
+        case 7: stack.push("./Content/Spoke.qml"); break;
+        case 8: stack.push("./Content/Ladder.qml"); break;
+        case 9: stack.push("./Content/Line.qml"); break;
 
         case 15: stack.push("./Content/Stretch.qml"); break;
         case 16: stack.push("./Content/GradientScaling.qml"); break;

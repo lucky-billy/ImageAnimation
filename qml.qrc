@@ -2,19 +2,14 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Content/Blinds.qml</file>
-        <file>Content/Erase.qml</file>
-        <file>Content/FlyIn.qml</file>
         <file>Content/Ladder.qml</file>
         <file>Content/Splitting.qml</file>
-        <file>Content/Checkerboard.qml</file>
         <file>Content/Line.qml</file>
         <file>Content/Dissolution.qml</file>
         <file>Content/Box.qml</file>
         <file>Content/Diamond.qml</file>
         <file>Content/Spoke.qml</file>
-        <file>Content/Sector.qml</file>
         <file>Content/CrossStars.qml</file>
-        <file>Content/Circular.qml</file>
         <file>Content/Stretch.qml</file>
         <file>Content/GradientScaling.qml</file>
         <file>Content/GradientGyration.qml</file>
