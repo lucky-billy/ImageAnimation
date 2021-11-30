@@ -28,9 +28,9 @@ Window {
             ListElement { effectName: "十字扩展" }
             ListElement { effectName: "轮辐与扇形" }
             ListElement { effectName: "对角线" }
-            ListElement { effectName: "随机线条" }
 
             // 炫酷
+            ListElement { effectName: "随机线条" }
             ListElement { effectName: "伸展" }
             ListElement { effectName: "渐变缩放" }
             ListElement { effectName: "渐变回旋" }
@@ -122,23 +122,23 @@ Window {
         case 6: stack.push("./Content/CrossStars.qml"); break;
         case 7: stack.push("./Content/Spoke.qml"); break;
         case 8: stack.push("./Content/Ladder.qml"); break;
-        case 9: stack.push("./Content/Line.qml"); break;
 
-        case 15: stack.push("./Content/Stretch.qml"); break;
-        case 16: stack.push("./Content/GradientScaling.qml"); break;
-        case 17: stack.push("./Content/GradientGyration.qml"); break;
-        case 18: stack.push("./Content/Rise.qml"); break;
-        case 19: stack.push("./Content/Compress.qml"); break;
-        case 20: stack.push("./Content/Bounce.qml"); break;
-        case 21: stack.push("./Content/Enlarge.qml"); break;
-        case 22: stack.push("./Content/Whirling.qml"); break;
-        case 23: stack.push("./Content/Float.qml"); break;
-        case 24: stack.push("./Content/LightSpeed.qml"); break;
-        case 25: stack.push("./Content/SpiralFlight.qml"); break;
-        case 26: stack.push("./Content/Throw.qml"); break;
-        case 27: stack.push("./Content/Windmill.qml"); break;
-        case 28: stack.push("./Content/Linear.qml"); break;
-        case 29: stack.push("./Content/Aircraft.qml"); break;
+        case 9: stack.push("./Content/Line.qml"); break;
+        case 10: stack.push("./Content/Stretch.qml"); break;
+        case 11: stack.push("./Content/GradientScaling.qml"); break;
+        case 12: stack.push("./Content/GradientGyration.qml"); break;
+        case 13: stack.push("./Content/Rise.qml"); break;
+        case 14: stack.push("./Content/Compress.qml"); break;
+        case 15: stack.push("./Content/Bounce.qml"); break;
+        case 16: stack.push("./Content/Enlarge.qml"); break;
+        case 17: stack.push("./Content/Whirling.qml"); break;
+        case 18: stack.push("./Content/Float.qml"); break;
+        case 19: stack.push("./Content/LightSpeed.qml"); break;
+        case 20: stack.push("./Content/SpiralFlight.qml"); break;
+        case 21: stack.push("./Content/Throw.qml"); break;
+        case 22: stack.push("./Content/Windmill.qml"); break;
+        case 23: stack.push("./Content/Linear.qml"); break;
+        case 24: stack.push("./Content/Aircraft.qml"); break;
         }
 
         // Keep the sub interface the same width and height as stackview

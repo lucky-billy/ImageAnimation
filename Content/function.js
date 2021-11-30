@@ -130,10 +130,10 @@
             case 0: {
                 float p = float(percent) / 200.0;
                 alpha = step(0.5 - p, qt_TexCoord0.x) *
-                            (1.0 - step(0.5 + p, qt_TexCoord0.x)) *
-                            step(0.5 - p, qt_TexCoord0.y) *
-                            (1.0 - step(0.5 + p, qt_TexCoord0.y)) *
-                            qt_Opacity;
+                        (1.0 - step(0.5 + p, qt_TexCoord0.x)) *
+                        step(0.5 - p, qt_TexCoord0.y) *
+                        (1.0 - step(0.5 + p, qt_TexCoord0.y)) *
+                        qt_Opacity;
             } break;
             case 1: {
                 float p = float(percent) / 200.0;
@@ -165,6 +165,146 @@
         }"
     }
 
+    // 菱形扩展
+    if ( type === "Diamond_fragmentShader" )
+    {
+        ret = "\
+        varying vec2 qt_TexCoord0;
+        uniform float qt_Opacity;
+        uniform sampler2D effectSource;
+        uniform int dir;
+        uniform int percent;
+
+        void main()
+        {
+            vec4 color = texture2D(effectSource, qt_TexCoord0);
+            float p = 0.0;
+
+            if ( dir == 0 ) {
+                p = float(percent) / 100.0;
+
+                if ( qt_TexCoord0.x + p < qt_TexCoord0.y || qt_TexCoord0.x - p > qt_TexCoord0.y ||
+                     1.0 - qt_TexCoord0.x + p < qt_TexCoord0.y || 1.0 - qt_TexCoord0.x - p > qt_TexCoord0.y ) {
+                    discard;
+                }
+            } else {
+                p = 1.0 - float(percent) / 100.0;
+
+                if ( qt_TexCoord0.x + p > qt_TexCoord0.y && qt_TexCoord0.x - p < qt_TexCoord0.y &&
+                     1.0 - qt_TexCoord0.x + p > qt_TexCoord0.y && 1.0 - qt_TexCoord0.x - p < qt_TexCoord0.y ) {
+                    discard;
+                }
+            }
+
+            gl_FragColor = color;
+        }"
+    }
+
+    // 十字扩展
+    if ( type === "CrossStars_fragmentShader" )
+    {
+        ret = "\
+        varying vec2 qt_TexCoord0;
+        uniform float qt_Opacity;
+        uniform sampler2D effectSource;
+        uniform int dir;
+        uniform int percent;
+
+        void main()
+        {
+            vec4 color = texture2D(effectSource, qt_TexCoord0);
+            float p = float(percent) / 200.0;
+            float alpha = 0.0;
+
+            if ( dir == 0 ) {
+                if ( (0.5 - p <= qt_TexCoord0.x && qt_TexCoord0.x <= 0.5 + p) ||
+                     ((qt_TexCoord0.x< 0.5 - p || qt_TexCoord0.x > 0.5 + p) &&
+                     (0.5 - p <= qt_TexCoord0.y && qt_TexCoord0.y < 0.5 + p)) ) {
+                    alpha = 1.0;
+                }
+            } else {
+                alpha = ((1.0 - step(p, qt_TexCoord0.x)) + (step(1.0 - p, qt_TexCoord0.x))) *
+                        ((1.0 - step(p, qt_TexCoord0.y)) + (step(1.0 - p, qt_TexCoord0.y)));
+            }
+
+            alpha *= qt_Opacity;
+            gl_FragColor = vec4(color.rgb * alpha, alpha);
+        }"
+    }
+
+    // 轮辐与扇形
+    if ( type === "Spoke_fragmentShader" )
+    {
+        ret = "\
+        varying vec2 qt_TexCoord0;
+        uniform float qt_Opacity;
+        uniform sampler2D effectSource;
+        uniform int dir;
+        uniform int percent;
+
+        void main()
+        {
+            vec4 color = texture2D(effectSource, qt_TexCoord0);
+            const vec2 origin = vec2(0.5, 0.5);
+            const vec2 a = vec2(0.5, 0.0);
+            vec2 c = qt_TexCoord0 - origin;
+            float alpha = 0.0;
+
+            switch (dir)
+            {
+            case 0: {
+                float p = float(percent) / 100.0 * -360.0;
+
+                if ( p >= -180.0 ) {
+                    if ( qt_TexCoord0.y > 0.5 ) {
+                        if ( cos(radians(p)) * length(c) * length(a) < dot(c, a) ) {
+                            alpha = 1.0;
+                        }
+                    }
+                } else {
+                    if ( qt_TexCoord0.y < 0.5 ) {
+                        if ( cos(radians(p)) * length(c) * length(a) > dot(c, a) ) {
+                            alpha = 1.0;
+                        }
+                    } else {
+                        alpha = 1.0;
+                    }
+                }
+            } break;
+            case 1: {
+                float p = float(percent) / 100.0 * 360.0;
+
+                if ( p <= 180.0 ) {
+                    if ( qt_TexCoord0.y < 0.5 ) {
+                        if ( cos(radians(p)) * length(c) * length(a) < dot(c, a) ) {
+                            alpha = 1.0;
+                        }
+                    }
+                } else {
+                    if ( qt_TexCoord0.y > 0.5 ) {
+                        if ( cos(radians(p)) * length(c) * length(a) > dot(c, a) ) {
+                            alpha = 1.0;
+                        }
+                    } else {
+                        alpha = 1.0;
+                    }
+                }
+            } break;
+            case 2: {
+                float p = float(percent) / 100.0 * 180.0;
+
+                if ( cos(radians(p)) * length(c) * length(a) < dot(c, a) ) {
+                    alpha = 1.0;
+                }
+            } break;
+            default: break;
+            }
+
+            alpha *= qt_Opacity;
+            gl_FragColor = vec4(color.rgb * alpha, alpha);
+        }"
+    }
+
     // 对角线
     if ( type === "Ladder_fragmentShader" )
     {
@@ -179,13 +319,15 @@
         {
             vec4 color = texture2D(effectSource, qt_TexCoord0);
             float p = float(percent) / 100.0;
-            float ps[] = float[](2.0 * p - qt_TexCoord0.x - qt_TexCoord0.y,
-                                qt_TexCoord0.y - (1.0 - 2.0 *(1.0 -  p)) - qt_TexCoord0.x,
-                                qt_TexCoord0.x + (1.0 - 2.0 * p) - qt_TexCoord0.y,
-                                qt_TexCoord0.y - 2.0 * (1.0 - p) + qt_TexCoord0.x);
-            float alpha = step(0, ps[dir]);
-            float alphas[] = float[](alpha, 1.0 - alpha, 1.0 - alpha, alpha);
-            alpha = alphas[dir];
+
+            float alphas[] = float[](
+                step(0.0, 2.0 * p - qt_TexCoord0.x - qt_TexCoord0.y),
+                1.0 - step(0.0, qt_TexCoord0.y - (1.0 - 2.0 *(1.0 -  p)) - qt_TexCoord0.x),
+                1.0 - step(0.0, qt_TexCoord0.x + (1.0 - 2.0 * p) - qt_TexCoord0.y),
+                step(0.0, qt_TexCoord0.y - 2.0 * (1.0 - p) + qt_TexCoord0.x)
+                );
+
+            float alpha = alphas[dir] * qt_Opacity;
             gl_FragColor = vec4(color.rgb * alpha, alpha);
         }"
     }
